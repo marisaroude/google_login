@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container">
+        <a href = "/agregarArticulo">Agregar  Articulo </a>
+    </div>
+
+    <h1>Este es el home del admin</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Stock</th>
+                <th>Visibilidad</th>
+                <th>Precio Unitario</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (Array.isArray(results) && results.length > 0) { %>
+                <% results.forEach((product) => { %>
+                    <tr>
+                        <td><%= product.nombre %></td>
+                        <td><%= product.stock %></td>
+                        <td>
+                            <% if (product.visibilidad) { %>
+                                Visible
+                            <% } else { %>
+                                No visible
+                            <% } %>
+                        </td>
+                        <td><%= product.precio_unitario %></td>
+                        <td><%= product.descripcion %></td>
+                        <td>
+                            <a href="/modificarArticulo" class="btn btn-outline-info">Modificar Producto</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="6">No se encontraron resultados.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>
