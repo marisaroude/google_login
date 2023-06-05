@@ -33,40 +33,18 @@ router.get('/auth/google',
 
 router.get('/auth/google/callback',
     passport.authenticate( 'google', {
-        successRedirect: '/homeClient' , 
+        successRedirect: '/dashboard' , 
         failureRedirect: '/login'
 }));
 
     
 
-//Se define la sig funcion como middleware para verificar si el usuario esta autenticado. Se utiliza la funcion req.isAuthenticated proporcionada por passport para comprobar si hay una sesión de usuario válida. Si el usuario está autenticado, se pasa al siguiente middleware; de lo contrario, se redirige a la página de inicio de sesión. Además se chequea si el usuario autenticado es admin o usuario.
+//Se define la sig funcion como middleware para verificar si el usuario esta autenticado. Se utiliza la funcion req.isAuthenticated proporcionada por passport para comprobar si hay una sesión de usuario válida. Si el usuario está autenticado, se pasa al siguiente middleware; de lo contrario, se redirige a la página de inicio de sesión. 
+checkAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) { return next() }
+  res.redirect("/login")
+}
 
-checkAuthenticated = async (req, res,next) => {
-  if (req.isAuthenticated()) {
-    // Obtener el perfil del usuario autenticado
-    const userProfile = req.user;
-    // Consultar la base de datos para verificar si el usuario es administrador
-    try {
-      const query = 'SELECT admin FROM usuario WHERE mail = $1 and admin = True';
-      const values = [userProfile.email];
-      const result = await client.query(query, values);
-      if (result.rowCount > 0 && result.rows[0].admin) {
-        // El usuario autenticado es administrador
-        console.log('Usuario administrador')
-        return next()
-      }
-    } catch (error) {
-      console.error('Error al verificar si el usuario es administrador:', error);
-    }
-
-    // El usuario autenticado no es administrador
-    console.log('No es admin')
-    return next()
-  }
-
-  // Redirigir al usuario a la página de inicio de sesión si no está autenticado
-  res.redirect('/login');
-};
 
 // Aplica el middleware checkAuthenticated a las rutas que requieran autenticación de usuario administrador
 router.get('/homeAdmin',checkAuthenticated, (req,res) => {
@@ -81,7 +59,33 @@ router.get('/homeAdmin',checkAuthenticated, (req,res) => {
 
 
 
+router.get('/dashboard', checkAuthenticated,async (req, res) => {
+  if (req.isAuthenticated()) {
+    // Obtener el perfil del usuario autenticado
+    const userProfile = req.user;
+    // Consultar la base de datos para verificar si el usuario es administrador
+    try {
+      const query = 'SELECT admin FROM usuario WHERE mail = $1 and admin = True';
+      const values = [userProfile.email];
+      const result = await client.query(query, values);
+      if (result.rowCount > 0 && result.rows[0].admin) {
+        // El usuario autenticado es administrador
+        console.log('Usuario administrador')
+        return res.redirect('/homeAdmin')
+      }else {
+        // El usuario autenticado es cliente
+        console.log('Usuario cliente');
+        return res.redirect('/homeClient');
+      }
+    } catch (error) {
+      console.error('Error al verificar si el usuario es administrador:', error);
+    }
+  }
 
+
+  // Redirigir al usuario a la página de inicio de sesión si no está autenticado
+  res.redirect('/login');
+});
 
 //Se define la ruta /dashboard para mostrar el panel de control del usuario autenticado. Se utiliza el middleware cheackautehnticates para garantizar que el usuario esté autenticado antes de acceder a esta ruta. 
 router.get('/homeClient', checkAuthenticated, (req, res) => {
