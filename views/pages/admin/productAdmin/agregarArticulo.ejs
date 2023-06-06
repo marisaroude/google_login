@@ -21,78 +21,90 @@
     </nav>
 
     <form action = "/save" method = "POST" class="row g-3 needs-validation" novalidate>
-        <div class="col-md-4">
-          <label for="nombreProducto" class="form-label">Nombre del producto</label>
-          <input type="text" class="form-control" id="nombreProducto" name ="nombreProducto" required>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
+      <div class="col-md-3">
+        <label for="nombreProducto" class="form-label">Nombre del producto</label>
+        <input type="text" class="form-control" id="nombreProducto" name ="nombreProducto" required>
+        <div class="invalid-feedback">
+          Debe ingresar el nombre del producto
         </div>
+      </div>
+      
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">$</span>
-            <label for="precioProducto" class="form-label">Precio del producto</label>
-            <input type="text" class="form-control" id ="precioProducto" name ="precioProducto" aria-label="Ingrese precio">
-            <span class="input-group-text">.00</span>
-        </div>
+      <div class="input-group col-md-3">
+          <span class="input-group-text">$</span>
+          <label for="precioProducto" class="form-label">Precio del producto</label>
+          <input type="text" class="form-control" id ="precioProducto" name ="precioProducto" aria-label="Ingrese precio">
+          <span class="input-group-text">.00</span>
+      </div>
         
-    
-       <!-- <div class="col-md-3">
+      <div class="col-md-3">
           <label for="categoriaProducto" class="form-label">Categoría del producto</label>
           <select class="form-select" id="categoriaProducto" required>
-            <option selected disabled value="">Seleccionar...</option>
-            <option>Cine</option>
-            <option>TV</option>
-            <option>Disney</option>
-            <option>Marvel</option>
-            <option>Marvel - MCU</option>
-            <option>Marvel - Comics</option>
-            <option>Marvel - X-men</option>
+          <option selected disabled value="">Seleccionar...</option>
+          <option>Cine</option>
+          <option>TV</option>
+          <option>Disney</option>
+          <option>Marvel</option>
+          <option>Marvel - MCU</option>
+          <option>Marvel - Comics</option>
+          <option>Marvel - X-men</option>
           </select>
           <div class="invalid-feedback">
             Debe seleccionar una categoría
           </div>
-        </div>-->
-
-        <div class="col-md-3">
-            <label for="visibilidadProducto" class="form-label">Visibilidad</label>
-            <select class="form-select" id="visibilidadProducto" name ="visibilidadProducto" required>
-              <option selected disabled value="">Seleccionar...</option>
-              <option value="true">Visible</option>
-              <option value ="false">No visible</option>
-            </select>
-            <div class="invalid-feedback">
-              Debe seleccionar una opción
-            </div>
-          </div>
-
-        <div class="mb-3">
-            <label for="descripcionProducto" class="form-label">Descripción</label>
-            <textarea class="form-control" id="descripcionProducto" name = "descripcionProducto" rows="3"></textarea>
-            <div class="invalid-feedback">
-                Debe ingresar una descripción
-            </div>
+      </div>
+      <!--<div class="col-md-3">
+        <label for="subcategoriaProducto" class="form-label">Subcategoría del producto</label>
+        <select class="form-select" id="subcategoriaProducto" name ="subcategoriaProducto" required>
+          <option selected disabled value="">Seleccionar...</option>
+          <option>Visible</option>
+          <option>No visible</option>
+        </select>
+        <div class="invalid-feedback">
+          Debe seleccionar una opción
         </div>
+      </div>-->
         
-        <div class="col-md-3">
-            <label for="stockDisponible" class="form-label">Stock Disponible</label>
-            <input type="text" class="form-control" id="stockDisponible" name ="stockDisponible" required>
-            <div class="invalid-feedback">
-              Debe ingresar el stock disponible
-            </div>
+      <div class="col-md-3">
+        <label for="visibilidadProducto" class="form-label">Visibilidad</label>
+        <select class="form-select" id="visibilidadProducto" name ="visibilidadProducto" required>
+          <option selected disabled value="">Seleccionar...</option>
+          <option value="true">Visible</option>
+          <option value ="false">No visible</option>
+        </select>
+        <div class="invalid-feedback">
+          Debe seleccionar una opción
         </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="descripcionProducto" class="form-label">Descripción</label>
+        <textarea class="form-control" id="descripcionProducto" name = "descripcionProducto" rows="3"></textarea>
+        <div class="invalid-feedback">
+            Debe ingresar una descripción
+        </div>
+      </div>
+        
+      <div class="col-md-3">
+        <label for="stockDisponible" class="form-label">Stock Disponible</label>
+        <input type="text" class="form-control" id="stockDisponible" name ="stockDisponible" required>
+        <div class="invalid-feedback">
+          Debe ingresar el stock disponible
+        </div>
+      </div>
           
 
-        <!--<div class="mb-3">
-            <label for ="imagenProducto" class = "form-label">Cargar imágen</label>
-            <input type="file" class="form-control" id="imagenProducto" aria-label="file example" required>
-            <div class="invalid-feedback">Example invalid form file feedback</div>
-        </div>-->
+      <div class="mb-3">
+        <label for ="imagenProducto" class = "form-label">Cargar imágen</label>
+        <input type="file" class="form-control" id="imagenProducto" aria-label="file example" required>
+        <div class="invalid-feedback">Example invalid form file feedback</div>
+      </div>
 
-        <div class="col-12">
-            <button class="btn btn-primary" type="submit">Guardar</button>
-            <a href ='/homeAdmin' class ="btn btn-secondary">Cancelar</a>
-        </div>
-      </form>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Guardar</button>
+        <a href ='/homeAdmin' class ="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
   </body>
 </html>

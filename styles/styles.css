@@ -1,4 +1,60 @@
-.custom-gray {
-    background-color: #888888; /* Color gris personalizado */
-    color: #ffffff; /* Color del texto en contraste */
+/*Encabezado de anuncios*/
+.anuncio-envios p{
+  background-color: #6CACCB;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 10px;
+  color: #ffffff;
+}
+
+/*Generales*/
+.texto-general{
+  color: #414A4E
+}
+
+/*Barra de navegación*/
+.navbar {
+  padding: 1rem;
+  background-color: #f5f6f7;
+}
+
+.navbar-collapse {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.barra-busqueda .form-control{
+    background-color: #EDEDF0;
+    color: #ffffff;
+    justify-content: start;
+    margin-top: 10px;
+    border-radius: 24px;
+}
+
+.barra-busqueda i{
+  padding-top: 15px;
+  margin-right: 5px;
+}
+
+
+/*.navbar-nav{
+  justify-content: start;
+  margin-bottom: 20px;
+}*/
+
+/*Adaptable (responsivo)*/
+
+/*Media query para ocultar el icono de la class navbar-brand para disposiitvos con tamaño 767px*/
+
+@media screen and (max-width: 990px) {
+  .navbar-brand{
+      display: none;
   }
+}
+
+@media screen and (max-width:800px){
+  .anuncio-envios p{
+      font-size: 1rem;
+  }
+}
+
